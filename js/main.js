@@ -5,7 +5,7 @@ var app = new Vue({
     image: './assets/vmSocks-green-onWhite.jpg',
     description: 'Many a pair of socks',
     altText: 'A pair of socks',
-    inStock: true,
+    inStock: false,
     inventory: 9,
     details: ['80% cotton', '20% polyester', 'Gender-neutral'],
     variants: [
@@ -30,6 +30,7 @@ var app = new Vue({
     },
     /*updateProduct: function (variantImage) {*/
     updateProduct(variantImage) {
+      console.log('>>>>> variantImage = ' + variantImage)
       this.image = variantImage
     }
   }
