@@ -1,7 +1,9 @@
 var app = new Vue({
   el: '#app',
   data: {
-    product: 'Boots',
-    description: 'Many a Spring Boot'
+    product: "Socks",
+    image: "./assets/vmSocks-green.jpg",
+    description: "Many a pair of socks",
+    altText: "A pair of socks"
   }
 })

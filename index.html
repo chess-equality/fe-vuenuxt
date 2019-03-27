@@ -14,6 +14,8 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
 
+  <link rel="stylesheet" href="css/style.css">
+
   <meta name="theme-color" content="#fafafa">
 </head>
 
@@ -28,8 +30,22 @@
   <p>Hello world! This is HTML5 Boilerplate.</p>
   -->
 
+  <div class="nav-bar"></div>
+
   <div id="app">
-    <h1>{{ product }}</h1><h2>{{ description }}</h2>
+
+    <div class="product">
+
+      <div class="product-image">
+        <img :src="image" :alt="altText" />
+      </div>
+
+      <div>
+        <h1>{{ product }}</h1><h2>{{ description }}</h2>
+      </div>
+
+    </div>
+
   </div>
 
   <!-- development version, includes helpful console warnings -->
