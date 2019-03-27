@@ -45,9 +45,11 @@ Vue.component('product', {
 
         <!--<button>Test</button>-->
 
+        <!--
         <div class="cart">
           <p>Cart({{ cart }})</p>
         </div>
+        -->
 
       </div>
 
@@ -77,15 +79,16 @@ Vue.component('product', {
           variantImage: './assets/vmSocks-blue.jpg',
           variantQuantity: 0
         }
-      ],
-      cart: 0
+      ]
+      /*cart: 0*/
     }
   },
   methods: {
     // addToCart: function () {
     // ES6-style function
     addToCart() {
-      this.cart += 1
+      /*this.cart += 1*/
+      this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
     },
     /*updateProduct: function (variantImage) {*/
     updateProduct(index) {
@@ -119,6 +122,13 @@ Vue.component('product', {
 var app = new Vue({
   el: '#app',
   data: {
-    premium: false
+    premium: false,
+    cart: []
+  },
+  methods: {
+    updateCart(id) {
+      /*this.cart += 1*/
+      this.cart.push(id)
+    }
   }
 })
