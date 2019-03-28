@@ -1,3 +1,6 @@
+// Global channel where we can send information
+var eventBus = new Vue()
+
 // Product component
 Vue.component('product', {
   props: {
@@ -42,7 +45,9 @@ Vue.component('product', {
 
         <button v-on:click="addToCart"
                 :disabled="!inStock"
-                :class="{ disabledButton: !inStock }">Add to Cart</button>
+                :class="{ disabledButton: !inStock }">
+          Add to Cart
+        </button>
 
         <!--<button>Test</button>-->
 
@@ -52,21 +57,10 @@ Vue.component('product', {
         </div>
         -->
         
-        <div>
-          <h2>Reviews</h2>
-          <p v-if="!reviews.length">There are no reviews yet</p>
-          <ul>
-            <li v-for="review in reviews">
-              <p>{{ review.name }}</p>
-              <p>Rating: {{ review.rating }}</p>
-              <p>{{ review.review }}</p>
-            </li>         
-          </ul>        
-        </div>
-
-      </div>
-      
-      <product-review @review-submitted="addProductReview"></product-review>
+        <!-- "reviews" will be received by the product-tabs component as props -->
+        <product-tabs :reviews="reviews"></product-tabs>
+        
+      </div>           
 
     </div>
   `,
@@ -114,9 +108,6 @@ Vue.component('product', {
       */
       console.log('>>>>> index = ' + index)
       this.selectedVariant = index
-    },
-    addProductReview(productReview) {
-      this.reviews.push(productReview)
     }
   },
   computed: {
@@ -135,6 +126,11 @@ Vue.component('product', {
       }
       return 2.99
     }
+  },
+  mounted() {
+    eventBus.$on('review-submitted', productReview => {
+      this.reviews.push(productReview)
+    })
   }
 })
 
@@ -193,7 +189,7 @@ Vue.component('product-review', {
           review: this.review,
           rating: this.rating
         }
-        this.$emit('review-submitted', productReview)
+        eventBus.$emit('review-submitted', productReview)
         this.name = null
         this.review = null
         this.rating = null
@@ -202,6 +198,51 @@ Vue.component('product-review', {
         if (!this.review) this.errors.push('Review is required.')
         if (!this.rating) this.errors.push('Rating is required.')
       }
+    }
+  }
+})
+
+// Product Tabs component
+Vue.component('product-tabs', {
+  // props is data passed to the component
+  props: {
+    reviews: {
+      type: Array,
+      required: true
+    }
+  },
+  template: `
+    <div>
+    
+      <span class="tab"
+            :class="{ activeTab: selectedTab === tab }"
+            v-for="(tab, index) in tabs"
+            :key="index"
+            @click="selectedTab = tab">
+        {{ tab }}      
+      </span>
+      
+      <div v-show="selectedTab === 'Reviews'">
+        <h2>Reviews</h2>
+        <p v-if="!reviews.length">There are no reviews yet</p>
+        <ul v-else>
+          <li v-for="(review, index) in reviews" :key="index">
+            <p>{{ review.name }}</p>
+            <p>Rating: {{ review.rating }}</p>
+            <p>{{ review.review }}</p>
+          </li>
+        </ul>
+      </div>
+
+      <product-review v-show="selectedTab === 'Make a review'"></product-review>
+      <!-- <product-review v-show="selectedTab === 'Reviews' @review-submitted="addProductReview"></product-review> -->
+        
+    </div>
+  `,
+  data() {
+    return {
+      tabs: ['Reviews', 'Make a review'],
+      selectedTab: 'Reviews'
     }
   }
 })
