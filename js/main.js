@@ -202,7 +202,6 @@ Vue.component('product-review', {
         if (!this.review) this.errors.push('Review is required.')
         if (!this.rating) this.errors.push('Rating is required.')
       }
-      this.errors = []
     }
   }
 })
