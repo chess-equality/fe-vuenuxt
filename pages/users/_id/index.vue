@@ -8,6 +8,13 @@ export default {
     return {
       /* id: 'id' */
     }
+  },
+  validate(data) {
+    console.log("##### Logging 'data'...")
+    console.log(data)
+
+    return /^\d+$/.test(data.params.id)
+    // return true
   }
 }
 </script>
