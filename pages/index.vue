@@ -5,14 +5,17 @@
       <h1 class="title">
         fe-vuenuxt
       </h1>
+      <h2 class="subtitle">
+        My pioneering Nuxt.js project
+      </h2>
 
       <p>
         <nuxt-link to="/users">Users</nuxt-link>
       </p>
+      <p>
+        <button @click="$router.push('/products')">Products</button>
+      </p>
 
-      <h2 class="subtitle">
-        My pioneering Nuxt.js project
-      </h2>
       <div class="links">
         <a href="https://nuxtjs.org/" target="_blank" class="button--green"
           >Documentation</a
