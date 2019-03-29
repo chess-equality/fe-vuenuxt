@@ -5,6 +5,11 @@
       <h1 class="title">
         fe-vuenuxt
       </h1>
+
+      <p>
+        <nuxt-link to="/users">Users</nuxt-link>
+      </p>
+
       <h2 class="subtitle">
         My pioneering Nuxt.js project
       </h2>
