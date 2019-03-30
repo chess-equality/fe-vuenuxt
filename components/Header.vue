@@ -1,3 +1,4 @@
+<!-- Components are rendered not as pages, but as part of pages -->
 <template>
   <header class="header">
     <ul class="nav-items">
