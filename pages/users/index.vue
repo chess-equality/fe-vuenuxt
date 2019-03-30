@@ -1,24 +1,12 @@
 <template>
   <div>
-    <!--<h1>The users' view</h1>-->
-    <input v-model="userId" type="text" />
-    <button @click="onLoadUser">Load User</button>
+    <p>Please enter an id and click the button.</p>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      /* name: 'users' */
-      userId: ''
-    }
-  },
-  methods: {
-    onLoadUser() {
-      this.$router.push('/users/' + this.userId)
-    }
-  }
+  layout: 'users'
 }
 </script>
 

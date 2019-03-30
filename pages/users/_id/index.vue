@@ -15,7 +15,8 @@ export default {
 
     return /^\d+$/.test(data.params.id)
     // return true
-  }
+  },
+  layout: 'users'
 }
 </script>
 
