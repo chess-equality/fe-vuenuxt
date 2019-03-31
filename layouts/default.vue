@@ -1,16 +1,27 @@
 <template>
   <div>
-    <Header />
+    <!--<Header />-->
+    <TheHeader @sidenavToggle="displaySidenav = !displaySidenav" />
+    <TheSidenav :show="displaySidenav" @close="displaySidenav = false" />
     <nuxt />
   </div>
 </template>
 
 <script>
-import Header from '@/components/Header'
+/* import Header from '@/components/Header' */
+import TheHeader from '@/components/Navigation/TheHeader'
+import TheSidenav from '@/components/Navigation/TheSidenav'
 
 export default {
   components: {
-    Header
+    /* Header */
+    TheHeader,
+    TheSidenav
+  },
+  data() {
+    return {
+      displaySidenav: false
+    }
   }
 }
 </script>
@@ -26,6 +37,16 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+}
+
+/*
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+*/
+
+body {
+  margin: 0;
 }
 
 *,
