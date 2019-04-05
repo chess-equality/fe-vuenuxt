@@ -15,7 +15,9 @@ export default {
   components: {
     PostList
   },
-  async asyncData() {
+  async asyncData(context) {
+    console.log('##### asyncData is executed!')
+    console.log(context)
     await delay(1500)
     return {
       loadedPosts: [
